@@ -8,9 +8,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Card
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -23,6 +25,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -44,10 +47,29 @@ fun TasksScreen(tasksViewModel: TasksViewModel) {
             onDismiss = { tasksViewModel.onDialogClose() }) {
             tasksViewModel.onTaskAdded(it)
         }
-        Column(modifier = Modifier.padding(padding)) {
-            Text(text = "Hello world!")
-        }
+        TaskList(tasksViewModel = tasksViewModel)
     }
+}
+
+@Composable
+fun TaskList(tasksViewModel: TasksViewModel) {
+    LazyColumn {
+
+    }
+}
+
+@Composable
+fun TaskItem() {
+    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+        Text(text = "Ejemplo", modifier = Modifier.weight(1f))
+        Checkbox(checked = true, onCheckedChange = { })
+    }
+}
+
+@Composable
+@Preview
+fun TaskItemPreview() {
+    TaskItem()
 }
 
 @Composable
@@ -105,7 +127,7 @@ fun AddTaskDialog(
     }
 }
 
-@Preview
+
 @Composable
 fun TasksWrapperPreview() {
     AddTaskDialog(false, {}) {}
